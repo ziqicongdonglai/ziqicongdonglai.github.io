@@ -45,18 +45,20 @@
   };
 </script>
 
-  <meta name="description" content="我的第一篇博客文章 新的旅途从心开始 坚持，认真，努力写好博客，好好学习 不要让自己后悔吧，虽然我知道这很难，大学三年快结束了！">
-<meta name="keywords" content="随笔">
+  <meta name="description" content="使用HTTP网络请求图片课堂上没有做出来这个课堂作业，课后进行尝试。课堂上出现的问题： 自己创建的HttpsURLConnection实体类urlConn居然没有使用connect()方法1urlConn.connect(); 使用BimapFactory工厂类的时候，还是老师之前的方法来转换成Bitmap格式的图片1mBitmap = BitmapFactory.decodeResource(g">
+<meta name="keywords" content="专业课,Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的第一篇博客文章">
-<meta property="og:url" content="https:&#x2F;&#x2F;ziqicongdonglai.github.io&#x2F;2019&#x2F;11&#x2F;17&#x2F;%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0&#x2F;index.html">
+<meta property="og:title" content="网络编程（1）">
+<meta property="og:url" content="https:&#x2F;&#x2F;ziqicongdonglai.github.io&#x2F;2019&#x2F;11&#x2F;18&#x2F;%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%881%EF%BC%89&#x2F;index.html">
 <meta property="og:site_name" content="紫气从东来的博客">
-<meta property="og:description" content="我的第一篇博客文章 新的旅途从心开始 坚持，认真，努力写好博客，好好学习 不要让自己后悔吧，虽然我知道这很难，大学三年快结束了！">
+<meta property="og:description" content="使用HTTP网络请求图片课堂上没有做出来这个课堂作业，课后进行尝试。课堂上出现的问题： 自己创建的HttpsURLConnection实体类urlConn居然没有使用connect()方法1urlConn.connect(); 使用BimapFactory工厂类的时候，还是老师之前的方法来转换成Bitmap格式的图片1mBitmap = BitmapFactory.decodeResource(g">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-18T14:10:14.751Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;ziqicongdonglai.github.io&#x2F;2019&#x2F;11&#x2F;18&#x2F;%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%881%EF%BC%89&#x2F;%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%881%EF%BC%89_files&#x2F;1.png">
+<meta property="og:updated_time" content="2019-11-18T14:10:35.872Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;ziqicongdonglai.github.io&#x2F;2019&#x2F;11&#x2F;18&#x2F;%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%881%EF%BC%89&#x2F;%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%881%EF%BC%89_files&#x2F;1.png">
 
-<link rel="canonical" href="https://ziqicongdonglai.github.io/2019/11/17/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">
+<link rel="canonical" href="https://ziqicongdonglai.github.io/2019/11/18/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%881%EF%BC%89/">
 
 
 <script id="page-configurations">
@@ -70,7 +72,7 @@
   };
 </script>
 
-  <title>我的第一篇博客文章 | 紫气从东来的博客</title>
+  <title>网络编程（1） | 紫气从东来的博客</title>
   
 
 
@@ -184,7 +186,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://ziqicongdonglai.github.io/2019/11/17/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">
+    <link itemprop="mainEntityOfPage" href="https://ziqicongdonglai.github.io/2019/11/18/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%881%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -197,7 +199,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          我的第一篇博客文章
+          网络编程（1）
         </h1>
 
         <div class="post-meta">
@@ -206,16 +208,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-11-17 19:09:20" itemprop="dateCreated datePublished" datetime="2019-11-17T19:09:20+08:00">2019-11-17</time>
+              <time title="创建时间：2019-11-18 12:41:38 / 修改时间：22:10:35" itemprop="dateCreated datePublished" datetime="2019-11-18T12:41:38+08:00">2019-11-18</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-18 22:10:14" itemprop="dateModified" datetime="2019-11-18T22:10:14+08:00">2019-11-18</time>
-              </span>
 
           
 
@@ -228,9 +224,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="我的第一篇博客文章-新的旅途从心开始"><a href="#我的第一篇博客文章-新的旅途从心开始" class="headerlink" title="我的第一篇博客文章 新的旅途从心开始"></a>我的第一篇博客文章 新的旅途从心开始</h2><blockquote>
-<p>坚持，认真，努力写好博客，好好学习</p>
-</blockquote><p>不要让自己后悔吧，虽然我知道这很难，大学三年快结束了！</p>
+        <h2 id="使用HTTP网络请求图片"><a href="#使用HTTP网络请求图片" class="headerlink" title="使用HTTP网络请求图片"></a>使用HTTP网络请求图片</h2><p>课堂上没有做出来这个课堂作业，课后进行尝试。</p><p>课堂上出现的问题：</p><ol>
+<li>自己创建的HttpsURLConnection实体类urlConn居然没有使用connect()方法<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">urlConn.connect();</span><br></pre></td></tr></table></figure></li>
+<li>使用BimapFactory工厂类的时候，还是老师之前的方法来转换成Bitmap格式的图片<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.sfdf);</span><br></pre></td></tr></table></figure>
+应该调用的方法是BIMAPFactory.decodeStream()<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">InputStream is = urlConn.getInputStream();</span><br><span class="line"><span class="comment">//用bimap工厂类转换</span></span><br><span class="line">mBitmap = BitmapFactory.decodeStream(is);</span><br></pre></td></tr></table></figure></li>
+<li>老师上课讲过了，<strong>先写再读</strong> outputStream的写操作，必须在inputStream的读操作之前，结果在自己写代码的时候还是先写的inputStream再写的outputStream 对自己无语了。。</li>
+<li>Android6.0后动态权限申请问题</li>
+</ol><a id="more"></a>
+
+
+<p>没有获得权限，然后报错<br>一点击获取图片按钮就出现如下错误</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2019</span>-<span class="number">11</span>-<span class="number">18</span> <span class="number">20</span>:<span class="number">15</span>:<span class="number">46.442</span> <span class="number">8957</span>-<span class="number">9024</span>/com.example.thread2 W/System.err: java.net.UnknownHostException: Unable to resolve host <span class="string">"www.baidu.com"</span>: No address associated with hostname</span><br></pre></td></tr></table></figure>
+<p>但经过网络上查询发现，安卓6.0INTERNET权限不是危险权限哪是怎么回事呢？<br>在网上查询了这个错误，发现也是有人和我一样的，他给出了出现这种错误的两种情况</p>
+<ol>
+<li>android设备网络连接没打开,例如3G网络和WIFI网络<br>  所以,如果遇到这种错误时,请先查看网络是否已正常连接.</li>
+<li>Manifest文件没有标明网络访问权限<br>  如果确认网络已经正常连接并且还是出这种错误的话,那么请看下你的Manifest文件是否标明应用需要网络访问权限,如果没标明的话,也访问不了网络,也会造成这种情况的.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//网络访问权限</span></span><br><span class="line">&lt;uses-permission android:name=<span class="string">"android.permission.INTERNET"</span> /&gt;</span><br></pre></td></tr></table></figure>
+我底下的这句也写了，并且既然这个权限不是危险权限，那是我网没开？<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><img src="%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%881%EF%BC%89_files/1.png" alt><br>果然是我犯蠢了，安卓模拟器没有连网当然获取不到图片啦~~</li>
+</ol>
+<p>最后附上帮助到我的网络上的博文地址</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a href="https://www.cnblogs.com/devlige/p/7436832.html" target="_blank" rel="noopener">https://www.cnblogs.com/devlige/p/7436832.html</a><br>两篇类似的案例是我做的这个的进阶版？应该。<br><a href="https://blog.csdn.net/ITzhongzi/article/details/88232762" target="_blank" rel="noopener">https://blog.csdn.net/ITzhongzi/article/details/88232762</a><br><a href="https://blog.csdn.net/weixin_30312659/article/details/95020986" target="_blank" rel="noopener">https://blog.csdn.net/weixin_30312659/article/details/95020986</a><br>这一篇博客有怎么判断是否有网的代码：<br><a href="https://blog.csdn.net/a78270528/article/details/49589995" target="_blank" rel="noopener">https://blog.csdn.net/a78270528/article/details/49589995</a></p>
+
     </div>
 	<div>
       
@@ -241,12 +254,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2019/11/17/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">我的第一篇博客文章</a></p>
+  <p><span>本文标题:</span><a href="/2019/11/18/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%881%EF%BC%89/">网络编程（1）</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 紫气从东来 的个人博客">紫气从东来</a></p>
-  <p><span>发布时间:</span>2019年11月17日 - 19:11</p>
+  <p><span>发布时间:</span>2019年11月18日 - 12:11</p>
   <p><span>最后更新:</span>2019年11月18日 - 22:11</p>
-  <p><span>原始链接:</span><a href="/2019/11/17/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" title="我的第一篇博客文章">https://ziqicongdonglai.github.io/2019/11/17/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://ziqicongdonglai.github.io/2019/11/17/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/"  aria-label="复制成功！"></i></span>
+  <p><span>原始链接:</span><a href="/2019/11/18/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%881%EF%BC%89/" title="网络编程（1）">https://ziqicongdonglai.github.io/2019/11/18/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%881%EF%BC%89/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://ziqicongdonglai.github.io/2019/11/18/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%881%EF%BC%89/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -300,24 +313,22 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag"><i class="fa fa-tag"></i> 随笔</a>
+              <a href="/tags/%E4%B8%93%E4%B8%9A%E8%AF%BE/" rel="tag"><i class="fa fa-tag"></i> 专业课</a>
+              <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/17/hello-world/" rel="next" title="Hello World">
-                  <i class="fa fa-chevron-left"></i> Hello World
+                <a href="/2019/11/17/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" rel="next" title="我的第一篇博客文章">
+                  <i class="fa fa-chevron-left"></i> 我的第一篇博客文章
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/18/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%881%EF%BC%89/" rel="prev" title="网络编程（1）">
-                  网络编程（1） <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -356,7 +367,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#我的第一篇博客文章-新的旅途从心开始"><span class="nav-number">1.</span> <span class="nav-text">我的第一篇博客文章 新的旅途从心开始</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用HTTP网络请求图片"><span class="nav-number">1.</span> <span class="nav-text">使用HTTP网络请求图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果"><span class="nav-number">2.</span> <span class="nav-text">结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -9,7 +9,6 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
-  <link rel="alternate" href="/atom.xml" title="紫气从东来的博客" type="application/atom+xml">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -137,9 +136,24 @@
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">0</span></a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">3</span></a>
 
   </li>
   </ul>
@@ -168,10 +182,84 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ziqicongdonglai.github.io/2019/11/18/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%881%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="紫气从东来">
+      <meta itemprop="description" content="紫气从东来的个站，用来写自己的专业学习博客？可能也会有很多其他的内容！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="紫气从东来的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/18/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%881%EF%BC%89/" class="post-title-link" itemprop="url">网络编程（1）</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-18 12:41:38 / 修改时间：22:10:35" itemprop="dateCreated datePublished" datetime="2019-11-18T12:41:38+08:00">2019-11-18</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="使用HTTP网络请求图片"><a href="#使用HTTP网络请求图片" class="headerlink" title="使用HTTP网络请求图片"></a>使用HTTP网络请求图片</h2><p>课堂上没有做出来这个课堂作业，课后进行尝试。</p><p>课堂上出现的问题：</p><ol>
+<li>自己创建的HttpsURLConnection实体类urlConn居然没有使用connect()方法<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">urlConn.connect();</span><br></pre></td></tr></table></figure></li>
+<li>使用BimapFactory工厂类的时候，还是老师之前的方法来转换成Bitmap格式的图片<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.sfdf);</span><br></pre></td></tr></table></figure>
+应该调用的方法是BIMAPFactory.decodeStream()<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">InputStream is = urlConn.getInputStream();</span><br><span class="line"><span class="comment">//用bimap工厂类转换</span></span><br><span class="line">mBitmap = BitmapFactory.decodeStream(is);</span><br></pre></td></tr></table></figure></li>
+<li>老师上课讲过了，<strong>先写再读</strong> outputStream的写操作，必须在inputStream的读操作之前，结果在自己写代码的时候还是先写的inputStream再写的outputStream 对自己无语了。。</li>
+<li>Android6.0后动态权限申请问题</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/18/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%881%EF%BC%89/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+	<div>
+      
+	</div>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ziqicongdonglai.github.io/2019/11/17/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://c-ssl.duitang.com/uploads/item/201504/07/20150407H2726_dKjhs.thumb.700_0.jpeg">
+      <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="紫气从东来">
       <meta itemprop="description" content="紫气从东来的个站，用来写自己的专业学习博客？可能也会有很多其他的内容！">
     </span>
@@ -191,10 +279,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-11-17 19:09:20 / 修改时间：19:20:58" itemprop="dateCreated datePublished" datetime="2019-11-17T19:09:20+08:00">2019-11-17</time>
+              <time title="创建时间：2019-11-17 19:09:20" itemprop="dateCreated datePublished" datetime="2019-11-17T19:09:20+08:00">2019-11-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-18 22:10:14" itemprop="dateModified" datetime="2019-11-18T22:10:14+08:00">2019-11-18</time>
+              </span>
 
           
 
@@ -209,12 +303,12 @@
       
           <h2 id="我的第一篇博客文章-新的旅途从心开始"><a href="#我的第一篇博客文章-新的旅途从心开始" class="headerlink" title="我的第一篇博客文章 新的旅途从心开始"></a>我的第一篇博客文章 新的旅途从心开始</h2><blockquote>
 <p>坚持，认真，努力写好博客，好好学习</p>
-</blockquote>
-<p>不要让自己后悔吧，虽然我知道这很难，大学三年快结束了！</p>
-
+</blockquote><p>不要让自己后悔吧，虽然我知道这很难，大学三年快结束了！</p>
       
     </div>
-
+	<div>
+      
+	</div>
     
     
     
@@ -233,7 +327,7 @@
     <link itemprop="mainEntityOfPage" href="https://ziqicongdonglai.github.io/2019/11/17/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://c-ssl.duitang.com/uploads/item/201504/07/20150407H2726_dKjhs.thumb.700_0.jpeg">
+      <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="紫气从东来">
       <meta itemprop="description" content="紫气从东来的个站，用来写自己的专业学习博客？可能也会有很多其他的内容！">
     </span>
@@ -269,22 +363,19 @@
 
       
           <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/17/hello-world/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
-
+	<div>
+      
+	</div>
     
     
     
@@ -334,7 +425,7 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="紫气从东来"
-      src="https://c-ssl.duitang.com/uploads/item/201504/07/20150407H2726_dKjhs.thumb.700_0.jpeg">
+      src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">紫气从东来</p>
   <div class="site-description" itemprop="description">紫气从东来的个站，用来写自己的专业学习博客？可能也会有很多其他的内容！</div>
 </div>
@@ -343,16 +434,22 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
   </nav>
 </div>
-  <div class="feed-link motion-element">
-    <a href="/atom.xml" rel="alternate">
-      <i class="fa fa-rss"></i>RSS
-    </a>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ziqicongdonglai" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ziqicongdonglai" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
   </div>
 
 
