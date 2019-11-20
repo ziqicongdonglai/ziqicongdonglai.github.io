@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"always","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="使用HTTP和WebView解析网页代码这次的是星期一的课后作业。其实昨天半夜也又弄，但只是把别人网上的代码复制下来，没仔细看。今天晚上来认真做做看。老师的要求是通过HTTP请求和URL获取到网页的代码，再通过WebView的loadDataWithBaseURL方法解析加载（可能？我也不是很懂）一开始我是直接搜索HTTP请求 WebView loadDataWithBaseURL加载网页，但好像">
+<meta name="keywords" content="专业课,Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络编程（2）">
+<meta property="og:url" content="https:&#x2F;&#x2F;ziqicongdonglai.github.io&#x2F;2019&#x2F;11&#x2F;19&#x2F;%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%882%EF%BC%89&#x2F;index.html">
+<meta property="og:site_name" content="紫气从东来的博客">
+<meta property="og:description" content="使用HTTP和WebView解析网页代码这次的是星期一的课后作业。其实昨天半夜也又弄，但只是把别人网上的代码复制下来，没仔细看。今天晚上来认真做做看。老师的要求是通过HTTP请求和URL获取到网页的代码，再通过WebView的loadDataWithBaseURL方法解析加载（可能？我也不是很懂）一开始我是直接搜索HTTP请求 WebView loadDataWithBaseURL加载网页，但好像">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-19T16:12:27.787Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ziqicongdonglai.github.io/2019/11/19/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%882%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>网络编程（2） | 紫气从东来的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">紫气从东来的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">5</span></a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ziqicongdonglai.github.io/2019/11/19/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%882%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="紫气从东来">
+      <meta itemprop="description" content="紫气从东来的个站，用来写自己的专业学习博客？可能也会有很多其他的内容！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="紫气从东来的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网络编程（2）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-19 19:11:21" itemprop="dateCreated datePublished" datetime="2019-11-19T19:11:21+08:00">2019-11-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-20 00:12:27" itemprop="dateModified" datetime="2019-11-20T00:12:27+08:00">2019-11-20</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="使用HTTP和WebView解析网页代码"><a href="#使用HTTP和WebView解析网页代码" class="headerlink" title="使用HTTP和WebView解析网页代码"></a>使用HTTP和WebView解析网页代码</h2><p>这次的是星期一的课后作业。其实昨天半夜也又弄，但只是把别人网上的代码复制下来，没仔细看。今天晚上来认真做做看。<br>老师的要求是通过HTTP请求和URL获取到网页的代码，再通过WebView的loadDataWithBaseURL方法解析加载（可能？我也不是很懂）<br>一开始我是直接搜索HTTP请求 WebView loadDataWithBaseURL加载网页，但好像找不到。于是转而把这个作业拆成两部分，先找怎么样通过HTTP请求，获得某个网页的源代码，找到了一个看似可以的方法，但最后还是没有显示出来结果。<br>于是先把上面的方法抛弃，转而采用老师不让我们用的简单方法 看看能不能出来</p><a id="more"></a>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mWebView.loadUrl(<span class="string">"http://www.baidu.com"</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h3><p>首先出现的问题是之前出现过的问题 当我尝试运行模拟器的时候，最右底下出现如下信息，记得之前出现过这个问题</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'D:\SDK\platform-tools\adb.exe start-server'</span> failed -- <span class="function">run manually <span class="keyword">if</span> <span class="title">necessary</span> <span class="params">(moments ago)</span></span></span><br></pre></td></tr></table></figure>
+<p>但我又忘了解决方法，所以百度查了一下，发现是adb被占用了，再仔细查了一下，是因为我先开了HBuilderX，不知道干了什么，导致adb被它给用了，结束了后，再运行，就没问题了！<br>感谢这篇博客的帮助 <a href="https://blog.csdn.net/yechaoa/article/details/79891752" target="_blank" rel="noopener">https://blog.csdn.net/yechaoa/article/details/79891752</a></p>
+<h3 id="问题2："><a href="#问题2：" class="headerlink" title="问题2："></a>问题2：</h3><p>出现以下报错</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Webview ： Denied starting an intent without a user gesture</span><br><span class="line">W/cr_AwContentsClient: Denied starting an intent without a user gesture, URI http:<span class="comment">//m.baidu.com/?cip=112.2.253.130&amp;baiduid=F882C21141E75C7F6FD01868E7F0274C&amp;from=844b&amp;vit=fps?from=844b&amp;vit=fps&amp;index=&amp;ssid=0&amp;bd_page_type=1&amp;logid=11622343613653464878&amp;pu=sz%401321_480&amp;t_noscript=jump</span></span><br></pre></td></tr></table></figure>
+<p>百度查了一下，发现是WebView不同版本的兼容问题<br>添加如下代码就不报这个错误了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mWebView.setWebViewClient(<span class="keyword">new</span> WebViewClient() &#123;</span><br><span class="line"></span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">shouldOverrideUrlLoading</span><span class="params">(WebView view, String url)</span> </span>&#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
+<p>感谢这两篇博客，解决了我的问题<br><a href="https://blog.csdn.net/cjh_android/article/details/79814132" target="_blank" rel="noopener">https://blog.csdn.net/cjh_android/article/details/79814132</a><br><a href="https://blog.csdn.net/v_oo_v/article/details/78499934" target="_blank" rel="noopener">https://blog.csdn.net/v_oo_v/article/details/78499934</a></p>
+<h3 id="问题3："><a href="#问题3：" class="headerlink" title="问题3："></a>问题3：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D/NetworkSecurityConfig: No Network Security Config specified, using platform <span class="keyword">default</span></span><br></pre></td></tr></table></figure>
+<p>查询后得知要添加CA信任证书 步骤：</p>
+<ol>
+<li>在项目的AndroidManifest.xml文件的application里面添加 android:networkSecurityConfig=”@xml/network_security_config”</li>
+<li>在项目的res目录下新增xml目录 增加对应的network_security_config.xml文件<br>文件内容为： </li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">network-security-config</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">base-config</span> <span class="attr">cleartextTrafficPermitted</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">trust-anchors</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">certificates</span> <span class="attr">src</span>=<span class="string">"system"</span> <span class="attr">overridePins</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">certificates</span> <span class="attr">src</span>=<span class="string">"user"</span> <span class="attr">overridePins</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">trust-anchors</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">base-config</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">network-security-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="问题原因："><a href="#问题原因：" class="headerlink" title="问题原因："></a>问题原因：</h4><p>默认不信任用户导入的CA证书，所以需要配置文件，来信任用户导入的证书<br>感谢下面三篇博文<br><a href="https://www.cnblogs.com/meitian/p/6889150.html" target="_blank" rel="noopener">https://www.cnblogs.com/meitian/p/6889150.html</a><br><a href="https://www.cnblogs.com/sq-9701/p/11284353.html" target="_blank" rel="noopener">https://www.cnblogs.com/sq-9701/p/11284353.html</a><br><a href="https://blog.csdn.net/u011045726/article/details/76098774/" target="_blank" rel="noopener">https://blog.csdn.net/u011045726/article/details/76098774/</a></p>
+<h3 id="问题4："><a href="#问题4：" class="headerlink" title="问题4："></a>问题4：</h3><p>出现 异常：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.os.NetworkOnMainThreadException</span><br></pre></td></tr></table></figure>
+<p>经过查询发现是不能把网络请求方面的写在主线程中。。。忘记了老师上课的教导了，于是我仿照着（复制粘贴）之前网络请求图片的方法，把对应的网络请求写在新建的线程之中。再次运行发现，能出来网页了，但是图片裂了，底部的一些链接还有CSS样式、JS等没有出来。  </p>
+<h3 id="问题5：加载网页，但图片不显示"><a href="#问题5：加载网页，但图片不显示" class="headerlink" title="问题5：加载网页，但图片不显示"></a>问题5：加载网页，但图片不显示</h3><p>我一开始以为是不是我从网上找到的用HTTP请求获取网页代码的方法不对，网上的方法有打印出网页代码（System.out.println），但我想在Android控制台打印但不知道为什么不行。<br>于是直接在新建的那个WebPage类（网络请求）里写了一个main方法，然后用System.out.println方法打印出得到的代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        WebPage page=<span class="keyword">new</span> WebPage();</span><br><span class="line">        page.setPageUrl(<span class="string">"https://www.baidu.com"</span>);</span><br><span class="line">        String code=page.getPageSource();</span><br><span class="line">        System.out.println(code);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>将打印出的代码全部复制粘贴，在HBuilderX中，新建一个html文件，粘贴，并运行，发现能够出来（图片，底部的链接），搜索功能也能用。那就是webview的那个方法执行的时候出问题了？<br>我又再次搜索和我这篇文章一开始搜索的类似的关键字 HTTP请求网页代码 WebView使用loadDataWithBaseURL方法<br>发现了一个我之前看到但感觉没有用的标题<strong>webView.loadDataWithBaseURL（）加载的html不显示图片</strong><br>我之前点进去看，发现是他图片地址错了，但这次，看到底下的推荐，然后点进去看，发现 Android WebView 图片显示不了 应该是http和https混合问题<br>但在试过网络上的方法后，发现并没有改变。。。<br>因为学校断网了，安卓模拟器也就连不了网了，所以这次就到这里了（2019.11.20 0:12）</p>
+
+    </div>
+	<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2019/11/19/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%882%EF%BC%89/">网络编程（2）</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 紫气从东来 的个人博客">紫气从东来</a></p>
+  <p><span>发布时间:</span>2019年11月19日 - 19:11</p>
+  <p><span>最后更新:</span>2019年11月20日 - 00:11</p>
+  <p><span>原始链接:</span><a href="/2019/11/19/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%882%EF%BC%89/" title="网络编程（2）">https://ziqicongdonglai.github.io/2019/11/19/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%882%EF%BC%89/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://ziqicongdonglai.github.io/2019/11/19/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%882%EF%BC%89/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+	</div>
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E4%B8%93%E4%B8%9A%E8%AF%BE/" rel="tag"><i class="fa fa-tag"></i> 专业课</a>
+              <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/18/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%881%EF%BC%89/" rel="next" title="网络编程（1）">
+                  <i class="fa fa-chevron-left"></i> 网络编程（1）
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/20/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%883%EF%BC%89/" rel="prev" title="网络编程（3）">
+                  网络编程（3） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用HTTP和WebView解析网页代码"><span class="nav-number">1.</span> <span class="nav-text">使用HTTP和WebView解析网页代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题1"><span class="nav-number">1.1.</span> <span class="nav-text">问题1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题2："><span class="nav-number">1.2.</span> <span class="nav-text">问题2：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题3："><span class="nav-number">1.3.</span> <span class="nav-text">问题3：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题原因："><span class="nav-number">1.3.1.</span> <span class="nav-text">问题原因：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题4："><span class="nav-number">1.4.</span> <span class="nav-text">问题4：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题5：加载网页，但图片不显示"><span class="nav-number">1.5.</span> <span class="nav-text">问题5：加载网页，但图片不显示</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="紫气从东来"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">紫气从东来</p>
+  <div class="site-description" itemprop="description">紫气从东来的个站，用来写自己的专业学习博客？可能也会有很多其他的内容！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ziqicongdonglai" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ziqicongdonglai" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">紫气从东来</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
