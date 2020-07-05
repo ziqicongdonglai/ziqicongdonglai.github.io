@@ -1187,7 +1187,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #46b657;
+  background: #f6a2f2;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2032,7 +2032,7 @@ pre .javascript .function {
 .my_post_copyright span {
   display: inline-block;
   width: 5.2em;
-  color: #b5b5b5;
+  color: #333;
   font-weight: bold;
 }
 .my_post_copyright .raw {
@@ -2044,7 +2044,7 @@ pre .javascript .function {
   border-bottom: 0;
 }
 .my_post_copyright a:hover {
-  color: #a3d2a3;
+  color: #0593d3;
   text-decoration: underline;
 }
 .my_post_copyright:hover .fa-clipboard {
